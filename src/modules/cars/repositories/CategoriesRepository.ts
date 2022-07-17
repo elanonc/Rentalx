@@ -1,12 +1,22 @@
 import { Category } from "../model/Category";
 import { ICategoriesRepository, ICreateCategoryDTO } from "./ICategoriesRepository";
 
+// Utilizando Singleton Pattern 
 
 class CategoriesRepository implements ICategoriesRepository {
     private categories: Category[];
 
-    constructor(){
+    private static INSTANCE: CategoriesRepository;
+
+    private constructor(){ // construtor private para não poder criar uma nova instancia com new CategoriesRepository()
         this.categories = [];
+    }
+
+    private static getInstance(): CategoryRepository{ //Cria instancia ou repassa instancia já existente
+        if (!CategoriesRepository.INSTANCE) {
+            CategoriesRepository.INSTANCE = new CategoriesRepository();
+        }
+        return CategoriesRepository.INSTANCE;
     }
 
     create({name, description}: ICreateCategoryDTO): void {
