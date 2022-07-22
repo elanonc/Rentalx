@@ -12,7 +12,7 @@ class CategoriesRepository implements ICategoriesRepository {
         this.categories = [];
     }
 
-    private static getInstance(): CategoryRepository{ //Cria instancia ou repassa instancia já existente
+    private static getInstance(): CategoriesRepository{ //Cria instancia ou repassa instancia já existente
         if (!CategoriesRepository.INSTANCE) {
             CategoriesRepository.INSTANCE = new CategoriesRepository();
         }
